@@ -1,8 +1,11 @@
 import { BrowserRouter, Routes, Route } from 'react-router-dom';
 import { useState, useEffect } from 'react';
 
-import UserContext from '../contexts/UserContext';
-import GlobalStyle from '../assets/globalStyles';
+import UserContext from './contexts/UserContext.js';
+import GlobalStyle from './assets/globalStyle.js';
+
+import SignIn from './pages/SignIn/index.js';
+import SignUp from './pages/SignUp/index.js';
 
 function App() {
     const tokenStorage = JSON.parse(localStorage.getItem('token'));
@@ -22,8 +25,9 @@ function App() {
             <UserContext.Provider value={contextValue}>
                 <BrowserRouter>
                     <Routes>
-                        {/* <Route path='/' element={<Login />} />
-                        <Route path='/cadastro' element={<Register />} /> */}
+                        <Route path='/' element={<SignIn />} />
+                        <Route path='/signup' element={<SignUp />} />
+                        {/* <Route path='/experiences' element={<GetExperiences />} /> */}
                     </Routes>
                 </BrowserRouter>
             </UserContext.Provider>
