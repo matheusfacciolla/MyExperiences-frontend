@@ -6,6 +6,7 @@ import GlobalStyle from './assets/globalStyle.js';
 
 import SignIn from './pages/SignIn/index.js';
 import SignUp from './pages/SignUp/index.js';
+import Experiences from './pages/Experiences/index.js';
 
 function App() {
     const tokenStorage = JSON.parse(localStorage.getItem('token'));
@@ -27,7 +28,7 @@ function App() {
                     <Routes>
                         <Route path='/' element={<SignIn />} />
                         <Route path='/signup' element={<SignUp />} />
-                        {/* <Route path='/experiences' element={<GetExperiences />} /> */}
+                        <Route path='/experiences' element={<Experiences />} />
                     </Routes>
                 </BrowserRouter>
             </UserContext.Provider>

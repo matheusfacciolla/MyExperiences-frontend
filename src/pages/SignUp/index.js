@@ -1,13 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
 import { useState } from 'react';
+
 import axios from 'axios';
+import styled from 'styled-components';
 
 import Loading from '../../components/Loading';
 
-import styled from 'styled-components';
 
 function SignUp() {
-    const [signUp, setSignUp] = useState({ email: "", name: "", image: "", password: "" });
+    const [signUp, setSignUp] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
     const inputSignUp = handleInputSignUp();

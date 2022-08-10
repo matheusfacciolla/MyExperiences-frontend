@@ -1,14 +1,13 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState, useContext } from 'react';
+import { useState } from 'react';
+
 import axios from 'axios';
-
-import UserContext from '../../contexts/UserContext.js';
-import Loading from '../../components/Loading.js';
-
 import styled from 'styled-components';
 
+import Loading from '../../components/Loading.js';
+
+
 function SignIn() {
-    const { setUserInformation } = useContext(UserContext);
     const [signIn, setSignIn] = useState({ email: '', password: '' });
     const [isLoading, setIsLoading] = useState(false);
 
@@ -27,7 +26,6 @@ function SignIn() {
         const promise = axios.post(URL, obj);
 
         promise.then((response) => {
-            setUserInformation(response.data);
             const user = JSON.stringify(response.data)
             localStorage.setItem('token', user);
             setIsLoading(false);
