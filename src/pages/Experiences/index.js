@@ -44,6 +44,7 @@ function Experiences() {
             :
             <ContainerContent>
                 <Header />
+                <H1>Experiences</H1>
                 {
                     data.map(element => <MappingExperience data={element} key={element.id} />)
                 }
@@ -102,10 +103,20 @@ const ContainerContent = styled.div`
     display: flex;
     flex-direction: column;
     background-color: red;
-    width: 300px;
+    width: 500px;
     height: 100vh;
     justify-content: center;
     align-items: center;
+`;
+
+const H1 = styled.h1`
+    margin-bottom: 50px;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 29px;
+    color: white;
 `;
 
 const ContainerWrap = styled.div`
@@ -126,6 +137,10 @@ const ContainerCategories = styled.div`
     h1 {
         margin: 3px;
     }
+
+    svg {
+        cursor: pointer;
+    }
 `;
 
 const ContainerExperiences = styled.div`
@@ -136,9 +151,4 @@ const ContainerExperiences = styled.div`
     margin-bottom: 10px;
     border: 2px solid #E7E7E7;
     background-color: green;
-
-    /* p {
-        margin-top: 3px;
-        margin-bottom: 3px;
-    } */
 `;

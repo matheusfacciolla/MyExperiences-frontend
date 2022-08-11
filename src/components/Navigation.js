@@ -10,17 +10,17 @@ function Navigation() {
                 </Link>
             </PlannedExperiences>
             <SeparadorVertical />
+            <Favorites>
+                <Link to='/create'>
+                    <button>New Register</button>
+                </Link>
+            </Favorites>
+            <SeparadorVertical />
             <Experiences>
                 <Link to='/experiences'>
                     <button>Experiences</button>
                 </Link>
             </Experiences>
-            <SeparadorVertical />
-            <Favorites>
-                <Link to=''>
-                    <button>Favorites</button>
-                </Link>
-            </Favorites>
         </Foot>
     );
 }

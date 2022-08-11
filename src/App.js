@@ -8,6 +8,7 @@ import SignIn from './pages/SignIn/index.js';
 import SignUp from './pages/SignUp/index.js';
 import Experiences from './pages/Experiences/index.js';
 import PlannedExperiences from './pages/PlannedExperiences/index.js';
+import NewRegister from './pages/NewRegister/index.js';
 
 function App() {
     const tokenStorage = JSON.parse(localStorage.getItem('token'));
@@ -32,6 +33,7 @@ function App() {
                         <Route path='/signup' element={<SignUp />} />
                         <Route path='/experiences' element={<Experiences />} />
                         <Route path='/experiences/planned' element={<PlannedExperiences />} />
+                        <Route path='/create' element={<NewRegister />} />
                     </Routes>
                 </BrowserRouter>
             </UserContext.Provider>

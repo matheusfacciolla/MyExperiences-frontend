@@ -25,18 +25,14 @@ function PlannedExperiences() {
     useEffect(() => {
         const promise = axios.get(URL, config);
         promise.then((response) => {
-            console.log("passou aqui em", response.data)
             setData(response.data);
             setIsLoading(false);
-            console.log("ISLOADING1 -> ", isLoading)
         });
         promise.catch(error => {
             alert("Deu algum erro...");
             setIsLoading(false);
         });
     }, [att]);
-
-    console.log("planned_experiences -> ", data)
 
     return (
         isLoading ?
@@ -48,8 +44,9 @@ function PlannedExperiences() {
             :
             <ContainerContent>
                 <Header />
+                <H1>Planned Experiences</H1>
                 {
-                    data.map(element => <MappingExperience
+                    data.map(element => <MappingPlannedExperience
                         data={element}
                         key={element.id}
                         userInformation={userInformation}
@@ -65,15 +62,15 @@ function PlannedExperiences() {
 
 export default PlannedExperiences;
 
-function MappingExperience(props) {
-    const { data, userInformation, setAtt, att, setIsLoading, isLoading } = props;
+function MappingPlannedExperience(props) {
+    const { data, userInformation, setAtt, att, setIsLoading } = props;
     const [isOpen, setIsOpen] = useState(false);
 
     const isCheckTrue = "#008000";
     const isCheckFalse = "#ff0000";
 
-    function handleCheck(callback) {
-        const obj = { id: callback.id, done: !callback.done }
+    function handleCheck(PlannedExperience) {
+        const obj = { id: PlannedExperience.id, done: !PlannedExperience.done }
         const URL = `http://localhost:5000/experiences/planned`;
         const config = { headers: { Authorization: `Bearer ${userInformation.token}` } };
         const promise = axios.put(URL, obj, config);
@@ -81,8 +78,6 @@ function MappingExperience(props) {
         promise.then((response) => {
             setAtt(!att)
             setIsLoading(false);
-            console.log("ISLOADING2222 -> ", isLoading)
-            console.log("aqui", response)
         });
         promise.catch(error => {
             setIsLoading(false);
@@ -122,10 +117,20 @@ const ContainerContent = styled.div`
     display: flex;
     flex-direction: column;
     background-color: red;
-    width: 300px;
+    width: 500px;
     height: 100vh;
     justify-content: center;
     align-items: center;
+`;
+
+const H1 = styled.h1`
+    margin-bottom: 50px;
+    font-family: 'Lexend Deca';
+    font-style: normal;
+    font-weight: 400;
+    font-size: 30px;
+    line-height: 29px;
+    color: white;
 `;
 
 const ContainerWrap = styled.div`
@@ -147,6 +152,10 @@ const ContainerCategories = styled.div`
     h1 {
         margin: 3px;
     }
+
+    svg {
+        cursor: pointer;
+    }
 `;
 
 const ContainerExperiences = styled.div`
@@ -165,6 +174,5 @@ const ContainerExperiences = styled.div`
     svg {
         font-size: 30px;
         cursor: pointer;
-        color: ${props => props.isCheck};
     }
 `;

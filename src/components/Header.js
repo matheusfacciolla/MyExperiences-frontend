@@ -1,5 +1,5 @@
 import { useContext, useState } from 'react';
-import { useNavigate } from 'react-router-dom';
+import { useNavigate, Link } from 'react-router-dom';
 
 import UserContext from "../contexts/UserContext";
 
@@ -23,7 +23,9 @@ function Header() {
 
     return (
         <Head>
-            <h1>MyExperiences</h1>
+            <Link to='/experiences'>
+                <button>MyExperiences</button>
+            </Link>
             {exit ? <MdExitToApp onClick={() => { setExit(false) }} /> : <MdExitToApp onClick={() => { logOut(); setExit(true) }} />}
         </Head>
     );
@@ -38,19 +40,22 @@ const Head = styled.div`
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
-    justify-content: space-between;
+    justify-content: space-around;
     position: fixed;
     top: 0;
     left: 0;
     z-index: 3;
-    h1 {
-        font-family: 'Playball';
+
+    button {
+        font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
-        font-size: 38.982px;
-        line-height: 49px;
-        color: #FFFFFF;
-        margin-left: 18px;
+        font-size: 30px;
+        line-height: 29px;
+        color: white;
+        background: #126BA5;
+        border: none;
+        cursor: pointer;
     }
 
     svg {
