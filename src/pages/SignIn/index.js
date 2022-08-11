@@ -31,7 +31,6 @@ function SignIn() {
             const user = JSON.stringify(response.data)
             localStorage.setItem('token', user);
             setUserInformation(response.data);
-            console.log(user)
             setIsLoading(false);
             navigate('/experiences');
         });

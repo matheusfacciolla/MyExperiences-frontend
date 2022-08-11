@@ -79,6 +79,21 @@ function MappingExperience(props) {
                     :
                     <></>
             }
+            {
+                isOpen && data.planned_experiences.length > 0?
+                data.planned_experiences.map(planned_experience => {
+                    return (
+                        <ContainerExperiences>
+                            <p>{planned_experience.title}</p>
+                            <p>{planned_experience.place}</p>
+                            <p>{planned_experience.desciption}</p>
+                            <p>{planned_experience.date}</p>
+                        </ContainerExperiences>
+                    );              
+                })
+                :
+                <></>
+            }
         </ContainerWrap>
     );
 }

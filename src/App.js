@@ -7,10 +7,12 @@ import GlobalStyle from './assets/globalStyle.js';
 import SignIn from './pages/SignIn/index.js';
 import SignUp from './pages/SignUp/index.js';
 import Experiences from './pages/Experiences/index.js';
+import PlannedExperiences from './pages/PlannedExperiences/index.js';
 
 function App() {
     const tokenStorage = JSON.parse(localStorage.getItem('token'));
     const [userInformation, setUserInformation] = useState(tokenStorage);
+    const [att, setAtt] = useState(false);
 
     useEffect(() => {
         if (tokenStorage) {
@@ -18,7 +20,7 @@ function App() {
         }
     }, []);
     
-    const contextValue = { userInformation, setUserInformation };
+    const contextValue = { userInformation, setUserInformation, att, setAtt };
 
     return (
         <>
@@ -29,6 +31,7 @@ function App() {
                         <Route path='/' element={<SignIn />} />
                         <Route path='/signup' element={<SignUp />} />
                         <Route path='/experiences' element={<Experiences />} />
+                        <Route path='/experiences/planned' element={<PlannedExperiences />} />
                     </Routes>
                 </BrowserRouter>
             </UserContext.Provider>
