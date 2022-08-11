@@ -16,7 +16,7 @@ function App() {
         if (tokenStorage) {
             setUserInformation(tokenStorage);
         }
-    }, [tokenStorage]);
+    }, []);
     
     const contextValue = { userInformation, setUserInformation };
 

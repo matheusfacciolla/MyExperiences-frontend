@@ -7,6 +7,9 @@ import Loading from '../../components/Loading';
 import styled from 'styled-components';
 import { IoIosArrowDown } from "react-icons/io";
 
+import Header from '../../components/Header';
+import Navigation from '../../components/Navigation';
+
 function Experiences() {
     const { userInformation } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
@@ -31,16 +34,20 @@ function Experiences() {
         });
     }, []);
 
-    console.log(data)
-
     return (
         isLoading ?
-            <ContainerContent><Loading /></ContainerContent>
+            <ContainerContent>
+                <Header />
+                <Loading />
+                <Navigation />
+            </ContainerContent>
             :
             <ContainerContent>
+                <Header />
                 {
                     data.map(element => <MappingExperience data={element} key={element.id} />)
                 }
+                <Navigation />
             </ContainerContent>
     );
 }

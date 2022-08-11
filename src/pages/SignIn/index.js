@@ -1,13 +1,15 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import axios from 'axios';
 import styled from 'styled-components';
 
+import UserContext from '../../contexts/UserContext';
 import Loading from '../../components/Loading.js';
 
 
 function SignIn() {
+    const { setUserInformation } = useContext(UserContext);
     const [signIn, setSignIn] = useState({ email: '', password: '' });
     const [isLoading, setIsLoading] = useState(false);
 
@@ -28,6 +30,8 @@ function SignIn() {
         promise.then((response) => {
             const user = JSON.stringify(response.data)
             localStorage.setItem('token', user);
+            setUserInformation(response.data);
+            console.log(user)
             setIsLoading(false);
             navigate('/experiences');
         });
