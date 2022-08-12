@@ -12,16 +12,22 @@ import NewRegister from './pages/NewRegister/index.js';
 
 function App() {
     const tokenStorage = JSON.parse(localStorage.getItem('token'));
-    const [userInformation, setUserInformation] = useState(tokenStorage);
+    const nameStorage = JSON.parse(localStorage.getItem('name'));
+    const [userToken, setUserToken] = useState(tokenStorage);
+    const [userName, setUserName] = useState(nameStorage);
     const [att, setAtt] = useState(false);
 
     useEffect(() => {
         if (tokenStorage) {
-            setUserInformation(tokenStorage);
+            setUserToken(tokenStorage);
         }
+        if (nameStorage) {
+            setUserName(nameStorage);
+        }
+    // eslint-disable-next-line
     }, []);
-    
-    const contextValue = { userInformation, setUserInformation, att, setAtt };
+
+    const contextValue = { userToken, setUserToken, userName, setUserName, att, setAtt };
 
     return (
         <>

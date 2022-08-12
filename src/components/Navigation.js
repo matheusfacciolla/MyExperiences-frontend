@@ -10,11 +10,11 @@ function Navigation() {
                 </Link>
             </PlannedExperiences>
             <SeparadorVertical />
-            <Favorites>
+            <NewRegister>
                 <Link to='/create'>
                     <button>New Register</button>
                 </Link>
-            </Favorites>
+            </NewRegister>
             <SeparadorVertical />
             <Experiences>
                 <Link to='/experiences'>
@@ -30,7 +30,7 @@ export default Navigation;
 const Foot = styled.div`
     width: 100%;
     height: 70px;
-    background: #126BA5;
+    background: #5745c6;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
@@ -49,7 +49,7 @@ const PlannedExperiences = styled.div`
         font-size: 30px;
         line-height: 29px;
         color: white;
-        background: #126BA5;
+        background: #5745c6;
         border: none;
         cursor: pointer;
     }
@@ -63,13 +63,13 @@ const Experiences = styled.div`
         font-size: 30px;
         line-height: 29px;
         color: white;
-        background: #126BA5;
+        background: #5745c6;
         border: none;
         cursor: pointer;
     }
 `;
 
-const Favorites = styled.div`
+const NewRegister = styled.div`
     button {
         font-family: 'Lexend Deca';
         font-style: normal;
@@ -77,7 +77,7 @@ const Favorites = styled.div`
         font-size: 30px;
         line-height: 29px;
         color: white;
-        background: #126BA5;
+        background: #5745c6;
         border: none;
         cursor: pointer;
     }

@@ -10,7 +10,7 @@ import Header from '../../components/Header';
 import Navigation from '../../components/Navigation';
 
 function NewRegister() {
-    const { userInformation } = useContext(UserContext);
+    const { userToken } = useContext(UserContext);
     const [create, setCreate] = useState({});
 
     const inputCreate = handleInputCreate();
@@ -18,7 +18,7 @@ function NewRegister() {
 
     const config = {
         headers: {
-            Authorization: `Bearer ${userInformation.token}`
+            Authorization: `Bearer ${userToken}`
         }
     }
     
@@ -58,7 +58,7 @@ function NewRegister() {
                     disabled={false}
                     required
                 >
-                    <option value="">selecione</option>
+                    <option value="">select</option>
                     <option value="experience">experience</option>
                     <option value="planned_experience">planned experience</option>
                 </select>
@@ -107,13 +107,14 @@ function NewRegister() {
                     disabled={false}
                     required
                 >
-                    <option value="">selecione</option>
-                    <option value="1">esportes</option>
-                    <option value="2">show</option>
-                    <option value="3">outro</option>
+                    <option value="">select</option>
+                    <option value="1">Sports</option>
+                    <option value="2">Shows</option>
+                    <option value="3">Trips</option>
+                    <option value="4">Others</option>
                 </select>
                 <div>
-                    <button type='submit'>Cadastrar</button>
+                    <button type='submit'>Register</button>
                 </div>
             </form>
         );
@@ -122,7 +123,7 @@ function NewRegister() {
     return (
         <ContainerContent>
             <Header />
-            <H1>Register new <br />experience/planned experience</H1>
+            <H1>Register new/planned <br />experience</H1>
             <ContainerInputs>
                 {inputCreate}
             </ContainerInputs>
@@ -136,7 +137,7 @@ export default NewRegister;
 const ContainerContent = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: red;
+    background-color: #7e72c7;
     width: 500px;
     height: 100vh;
     justify-content: center;
@@ -157,7 +158,7 @@ const H1 = styled.h1`
 const ContainerInputs = styled.div`
     input {
         width: 303px;
-        height: 60px;
+        height: 50px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
@@ -176,7 +177,7 @@ const ContainerInputs = styled.div`
     }
     select {
         width: 303px;
-        height: 60px;
+        height: 50px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
@@ -209,7 +210,7 @@ const ContainerInputs = styled.div`
     button {
         width: 303px;
         height: 45px;
-        background: #52B6FF;
+        background: #5745c6;
         border-radius: 4.63636px;
         font-family: 'Lexend Deca';
         font-style: normal;

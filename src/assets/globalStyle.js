@@ -132,7 +132,7 @@ table {
     box-sizing: border-box;
 }
 body {
-  background: #E5E5E5;
+  background: #8b82c3;
   display: flex;
   justify-content: center;
   align-items: center;

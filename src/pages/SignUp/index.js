@@ -50,19 +50,13 @@ function SignUp() {
                     />
                     <input
                         type='text'
-                        placeholder='senha'
+                        placeholder='password'
                         disabled={true}
                         style={{ background: '#F2F2F2', color: '#AFAFAF' }}
                     />
                     <input
                         type='text'
-                        placeholder='nome'
-                        disabled={true}
-                        style={{ background: '#F2F2F2', color: '#AFAFAF' }}
-                    />
-                    <input
-                        type='text'
-                        placeholder='foto'
+                        placeholder='name'
                         disabled={true}
                         style={{ background: '#F2F2F2', color: '#AFAFAF' }}
                     />
@@ -83,7 +77,7 @@ function SignUp() {
                     />
                     <input
                         type='text'
-                        placeholder='nome'
+                        placeholder='name'
                         name='name'
                         value={signUp.name}
                         onChange={e => setSignUp({ ...signUp, name: e.target.value })}
@@ -92,7 +86,7 @@ function SignUp() {
                     />
                     <input
                         type='password'
-                        placeholder='senha'
+                        placeholder='password'
                         name='password'
                         value={signUp.password}
                         onChange={e => setSignUp({ ...signUp, password: e.target.value })}
@@ -100,7 +94,7 @@ function SignUp() {
                         required
                     />
                     <div>
-                        <button type='submit'>Cadastrar</button>
+                        <button type='submit'>Register</button>
                     </div>
                 </form>
         );
@@ -115,7 +109,7 @@ function SignUp() {
                 {inputSignUp}
             </ContainerInputs>
             <Link to='/'>
-                <p>Já tem uma conta? Faça login!</p>
+                <p style={{color: 'white'}}>Already have an account? Log in!</p>
             </Link>
         </ContainerContent>
     );
@@ -130,7 +124,7 @@ const ContainerContent = styled.div`
     justify-content: center;
     width: 100vw;
     height: 100vh;
-    background-color: white;
+    background: #8b82c3;
 `;
 
 const ContainerLogo = styled.div`
@@ -140,13 +134,13 @@ const ContainerLogo = styled.div`
         margin-top: 68px;
     }
     h1 {
-        font-family: 'Playball';
+        font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
         font-size: 68.982px;
         line-height: 86px;
         text-align: center;
-        color: #126BA5;
+        color: white;
         margin-bottom: 18px;
     }
 `;
@@ -182,7 +176,7 @@ const ContainerInputs = styled.div`
     button {
         width: 303px;
         height: 45px;
-        background: #52B6FF;
+        background: #5745c6;
         border-radius: 4.63636px;
         font-family: 'Lexend Deca';
         font-style: normal;

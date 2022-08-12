@@ -9,7 +9,7 @@ import Loading from '../../components/Loading.js';
 
 
 function SignIn() {
-    const { setUserInformation } = useContext(UserContext);
+    const { setUserToken, setUserName } = useContext(UserContext);
     const [signIn, setSignIn] = useState({ email: '', password: '' });
     const [isLoading, setIsLoading] = useState(false);
 
@@ -28,9 +28,12 @@ function SignIn() {
         const promise = axios.post(URL, obj);
 
         promise.then((response) => {
-            const user = JSON.stringify(response.data)
+            const user = JSON.stringify(response.data.token);
+            const name = JSON.stringify(response.data.name);
             localStorage.setItem('token', user);
-            setUserInformation(response.data);
+            localStorage.setItem('name', name);
+            setUserToken(response.data.token);
+            setUserName(response.data.name);
             setIsLoading(false);
             navigate('/experiences');
         });
@@ -73,7 +76,7 @@ function SignIn() {
                     />
                     <input
                         type='password'
-                        placeholder='senha'
+                        placeholder='password'
                         name='password'
                         value={signIn.senha}
                         onChange={e => setSignIn({ ...signIn, password: e.target.value })}
@@ -94,7 +97,7 @@ function SignIn() {
                 {inputSignIn}
             </ContainerInputs>
             <Link to='/signup'>
-                <p>Não tem uma conta? Cadastre-se!</p>
+                <p style={{color: 'white'}}>Don't have an account? Register!</p>
             </Link>
         </ContainerContent>
     );
@@ -109,7 +112,7 @@ const ContainerContent = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background-color: white;
+    background: #8b82c3;
 `;
 const ContainerLogo = styled.div`
     img {
@@ -118,13 +121,13 @@ const ContainerLogo = styled.div`
         margin-top: 68px;
     }
     h1 {
-        font-family: 'Playball';
+        font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
         font-size: 68.982px;
         line-height: 86px;
         text-align: center;
-        color: #126BA5;
+        color: white;
         margin-bottom: 18px;
     }
 `;
@@ -160,7 +163,7 @@ const ContainerInputs = styled.div`
     button {
         width: 303px;
         height: 45px;
-        background: #52B6FF;
+        background: #5745c6;
         border-radius: 4.63636px;
         font-family: 'Lexend Deca';
         font-style: normal;
@@ -181,6 +184,6 @@ const ContainerInputs = styled.div`
         line-height: 17px;
         text-align: center;
         text-decoration-line: underline;
-        color: #52B6FF;
+        color: white;
     }
 `;
