@@ -13,7 +13,7 @@ function Header() {
     const navigate = useNavigate();
 
     function logOut() {
-        if (window.confirm("Você deseja se deslogar?")) {
+        if (window.confirm("Do you want to log out?")) {
             window.localStorage.removeItem('user');
             window.localStorage.clear('user');
             window.localStorage.removeItem('name');

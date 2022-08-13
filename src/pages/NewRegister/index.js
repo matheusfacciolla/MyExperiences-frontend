@@ -1,6 +1,8 @@
 import { useContext, useState } from 'react';
 import { useNavigate } from 'react-router-dom';
 import axios from 'axios';
+import dayjs from "dayjs";
+import moment from 'moment';
 
 import UserContext from '../../contexts/UserContext';
 
@@ -8,10 +10,12 @@ import styled from 'styled-components';
 
 import Header from '../../components/Header';
 import Navigation from '../../components/Navigation';
+import Loading from '../../components/Loading';
 
 function NewRegister() {
     const { userToken } = useContext(UserContext);
     const [create, setCreate] = useState({});
+    const [isLoading, setIsLoading] = useState(false);
 
     const inputCreate = handleInputCreate();
     const navigate = useNavigate();
@@ -25,7 +29,7 @@ function NewRegister() {
     const obj = {
         title: create.title,
         place: create.place,
-        date: create.date,
+        date: moment((new Date(create.date)).toLocaleDateString()).add(1, 'month').calendar(),
         description: create.description,
         category_id: parseInt(create.category_id)
     }
@@ -34,14 +38,34 @@ function NewRegister() {
 
     function handleCreate(e) {
         e.preventDefault();
+        setIsLoading(true)
+        const date1 = moment(dayjs(Date.now()).format("DD-MM-YYYY"))
+        const date2 = moment(obj.date);
+        const diff = date1.diff(date2, 'day');
+
+        if (diff < 0 && create.type === 'experience') {
+            console.log(diff)
+            alert("The day of this experience has not arrived yet...");
+            setIsLoading(false);
+            return;
+        }
+
+        if (diff > 0 && create.type === 'planned_experience') {
+            alert("This day has passed, impossible to plan this experience...");
+            setIsLoading(false);
+            return;
+        }
+
         const promise = axios.post(URL, obj, config);
 
         promise.then((response) => {
             setCreate(response.data);
+            setIsLoading(false);
             navigate(`/${create.type === "experience" ? "experiences" : "experiences/planned"}`)
         });
 
         promise.catch(error => {
+            setIsLoading(false);
             alert("Deu algum erro...");
         });
     }
@@ -55,7 +79,7 @@ function NewRegister() {
                     name='create'
                     value={create.category}
                     onChange={e => setCreate({ ...create, type: e.target.value })}
-                    disabled={false}
+                    disabled={isLoading? true : false}
                     required
                 >
                     <option value="">select</option>
@@ -64,20 +88,20 @@ function NewRegister() {
                 </select>
                 <input
                     type='text'
-                    placeholder='title'
+                    placeholder='title (max 20 caracteres)'
                     name='title'
                     value={create.title}
                     onChange={e => setCreate({ ...create, title: e.target.value })}
-                    disabled={false}
+                    disabled={isLoading? true : false}
                     required
                 />
                 <input
                     type='text'
-                    placeholder='place'
+                    placeholder='place (max 20 caracteres)'
                     name='place'
                     value={create.place}
                     onChange={e => setCreate({ ...create, place: e.target.value })}
-                    disabled={false}
+                    disabled={isLoading? true : false}
                     required
                 />
                 <input
@@ -86,16 +110,16 @@ function NewRegister() {
                     name='date'
                     value={create.date}
                     onChange={e => setCreate({ ...create, date: e.target.value })}
-                    disabled={false}
+                    disabled={isLoading? true : false}
                     required
                 />
                 <input
                     type='text'
-                    placeholder='description'
+                    placeholder='description (max 30 caracteres)'
                     name='description'
                     value={create.description}
                     onChange={e => setCreate({ ...create, description: e.target.value })}
-                    disabled={false}
+                    disabled={isLoading? true : false}
                     required
                 />
                 <select
@@ -104,7 +128,7 @@ function NewRegister() {
                     name='category'
                     value={create.category}
                     onChange={e => setCreate({ ...create, category_id: e.target.value })}
-                    disabled={false}
+                    disabled={isLoading? true : false}
                     required
                 >
                     <option value="">select</option>
@@ -114,7 +138,7 @@ function NewRegister() {
                     <option value="4">Others</option>
                 </select>
                 <div>
-                    <button type='submit'>Register</button>
+                {isLoading ? <button disabled style={{ opacity: 0.7 }}><Loading /></button> : <button type='submit'>Register</button>}
                 </div>
             </form>
         );
@@ -157,7 +181,7 @@ const H1 = styled.h1`
 
 const ContainerInputs = styled.div`
     input {
-        width: 303px;
+        width: 380px;
         height: 50px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
@@ -176,7 +200,7 @@ const ContainerInputs = styled.div`
         outline: 0;
     }
     select {
-        width: 303px;
+        width: 380px;
         height: 50px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
@@ -208,7 +232,7 @@ const ContainerInputs = styled.div`
         color: #DBDBDB;
     }
     button {
-        width: 303px;
+        width: 380px;
         height: 45px;
         background: #5745c6;
         border-radius: 4.63636px;

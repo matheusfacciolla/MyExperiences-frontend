@@ -69,7 +69,7 @@ function MappingExperience(props) {
     const [isOpen, setIsOpen] = useState(false);
 
     function handleDelete(callback) {
-        if (window.confirm("Você deseja excluir esta experiencia")) {
+        if (window.confirm("Do you want to delete this experience?")) {
             const URL = `http://localhost:5000/experiences/${callback.done ? "planned/" : ""}delete/${callback.id}`;
             const config = { headers: { Authorization: `Bearer ${userToken}` } };
             axios.delete(URL, config);
@@ -77,6 +77,8 @@ function MappingExperience(props) {
             setIsLoading(false);
         }
     }
+
+    console.log(data)
 
     return (
         <ContainerWrap>
@@ -92,7 +94,7 @@ function MappingExperience(props) {
                                 <div>
                                     <p>{experience.title}</p>
                                     <p>{experience.place}</p>
-                                    <p>{experience.desciption}</p>
+                                    <p>{experience.description}</p>
                                     <p>{experience.date}</p>
                                 </div>
                                 <AiFillDelete onClick={() => { handleDelete({ ...experience }) }} />
@@ -110,7 +112,7 @@ function MappingExperience(props) {
                                 <div>
                                     <p>{planned_experience.title}</p>
                                     <p>{planned_experience.place}</p>
-                                    <p>{planned_experience.desciption}</p>
+                                    <p>{planned_experience.description}</p>
                                     <p>{planned_experience.date}</p>
                                 </div>
                                 <AiFillDelete onClick={() => { handleDelete({ ...planned_experience }) }} />
@@ -164,25 +166,29 @@ const ContainerWrap = styled.div`
 
 const ContainerCategories = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 10px;
 
     h1 {
         margin: 3px;
         font-size: 26px;
+        margin-left: 20px;
     }
 
     svg {
         color: white;
         font-size: 30px;
+        margin-right: 20px;
         cursor: pointer;
     }
 `;
 
 const ContainerExperiences = styled.div`
+    width: 100%;
+    height: 100%;
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
     padding-top: 10px;
     padding-bottom: 10px;
@@ -193,14 +199,20 @@ const ContainerExperiences = styled.div`
     div {
         display: flex;
         flex-direction: column;
+        margin-left: 20px;
     }
 
     p {
         font-size: 20px;
+        max-height: 100%;
+        max-width: 330px;
+        word-wrap: normal;
+        word-wrap: break-word;
     }
 
     svg {
         font-size: 30px;
         cursor: pointer;
+        margin-right: 20px;
     }
 `;

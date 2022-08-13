@@ -25,6 +25,7 @@ function SignIn() {
 
     function handleSigIn(e) {
         e.preventDefault();
+        setIsLoading(true);
         const promise = axios.post(URL, obj);
 
         promise.then((response) => {
@@ -46,45 +47,27 @@ function SignIn() {
 
     function handleInputSignIn() {
         return (
-            isLoading === true ?
-                <form onSubmit={handleSigIn}>
-                    <input
-                        type='email'
-                        placeholder='email'
-                        disabled={true}
-                        style={{ background: '#F2F2F2', color: '#AFAFAF' }}
-                    />
-                    <input
-                        type='password'
-                        placeholder='senha'
-                        disabled={true}
-                        style={{ background: '#F2F2F2', color: '#AFAFAF' }}
-
-                    />
-                    <button disabled style={{ opacity: 0.7 }}><Loading /></button>
-                </form>
-                :
-                <form onSubmit={handleSigIn}>
-                    <input
-                        type='email'
-                        placeholder='email'
-                        name='email'
-                        value={signIn.email}
-                        onChange={e => setSignIn({ ...signIn, email: e.target.value })}
-                        disabled={false}
-                        required
-                    />
-                    <input
-                        type='password'
-                        placeholder='password'
-                        name='password'
-                        value={signIn.senha}
-                        onChange={e => setSignIn({ ...signIn, password: e.target.value })}
-                        disabled={false}
-                        required
-                    />
-                    <button type='submit'>Entrar</button>
-                </form>
+            <form onSubmit={handleSigIn}>
+                <input
+                    type='email'
+                    placeholder='email'
+                    name='email'
+                    value={signIn.email}
+                    onChange={e => setSignIn({ ...signIn, email: e.target.value })}
+                    disabled={isLoading ? true : false}
+                    required
+                />
+                <input
+                    type='password'
+                    placeholder='password'
+                    name='password'
+                    value={signIn.senha}
+                    onChange={e => setSignIn({ ...signIn, password: e.target.value })}
+                    disabled={isLoading ? true : false}
+                    required
+                />
+                {isLoading ? <button disabled style={{ opacity: 0.7 }}><Loading /></button> : <button type='submit'>Enter</button>}
+            </form>
         );
     }
 
@@ -97,7 +80,7 @@ function SignIn() {
                 {inputSignIn}
             </ContainerInputs>
             <Link to='/signup'>
-                <p style={{color: 'white'}}>Don't have an account? Register!</p>
+                <p>Don't have an account? Register!</p>
             </Link>
         </ContainerContent>
     );
@@ -113,6 +96,18 @@ const ContainerContent = styled.div`
     justify-content: center;
     align-items: center;
     background: #8b82c3;
+
+    p {
+        font-family: 'Lexend Deca';
+        font-style: normal;
+        font-weight: 400;
+        font-size: 13.976px;
+        line-height: 17px;
+        text-align: center;
+        text-decoration-line: underline;
+        color: white;
+        cursor: pointer;
+    }
 `;
 const ContainerLogo = styled.div`
     img {
@@ -175,15 +170,5 @@ const ContainerInputs = styled.div`
         color: #FFFFFF;
         margin-bottom: 25px;
         cursor: pointer;
-    }
-    p {
-        font-family: 'Lexend Deca';
-        font-style: normal;
-        font-weight: 400;
-        font-size: 13.976px;
-        line-height: 17px;
-        text-align: center;
-        text-decoration-line: underline;
-        color: white;
     }
 `;

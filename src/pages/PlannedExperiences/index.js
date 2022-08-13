@@ -1,5 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
+import dayjs from "dayjs";
+import moment from 'moment';
 
 import styled from 'styled-components';
 import { IoIosArrowDown } from "react-icons/io";
@@ -33,7 +35,7 @@ function PlannedExperiences() {
             alert("Deu algum erro...");
             setIsLoading(false);
         });
-    // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [att]);
 
     return (
@@ -73,6 +75,15 @@ function MappingPlannedExperience(props) {
     const isCheckFalse = "#ff0000";
 
     function handleCheck(PlannedExperience) {
+        const date2 = moment(PlannedExperience.date);
+        const date1 = moment(dayjs(Date.now()).format("DD-MM-YYYY"))
+        const diff = date1.diff(date2, 'day');
+
+        if(diff < 0){
+            alert("The day of this experience has not arrived yet...");
+            setIsLoading(false);
+            return;
+        }
         const obj = { id: PlannedExperience.id, done: !PlannedExperience.done }
         const URL = `http://localhost:5000/experiences/planned`;
         const config = { headers: { Authorization: `Bearer ${userToken}` } };
@@ -89,7 +100,7 @@ function MappingPlannedExperience(props) {
     }
 
     function handleDelete(callback) {
-        if (window.confirm("Você deseja excluir esta experiencia")) {
+        if (window.confirm("Do you want to delete this planned experience?")) {
             const URL = `http://localhost:5000/experiences/planned/delete/${callback.id}`;
             const config = { headers: { Authorization: `Bearer ${userToken}` } };
             axios.delete(URL, config);
@@ -112,7 +123,7 @@ function MappingPlannedExperience(props) {
                                 <div>
                                     <p>{experience.title}</p>
                                     <p>{experience.place}</p>
-                                    <p>{experience.desciption}</p>
+                                    <p>{experience.description}</p>
                                     <p>{experience.date}</p>
                                 </div>
                                 <div>
@@ -170,32 +181,33 @@ const ContainerWrap = styled.div`
 
 const ContainerCategories = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     margin-top: 10px;
     margin-bottom: 10px;
 
     h1 {
         margin: 3px;
         font-size: 26px;
+        margin-left: 20px;
     }
 
     svg {
         color: white;
         font-size: 30px;
+        margin-right: 20px;
         cursor: pointer;
     }
 `;
 
 const ContainerExperiences = styled.div`
     display: flex;
-    justify-content: space-around;
+    justify-content: space-between;
     align-items: center;
-    margin-bottom: 10px;
     background-color: #8b82c3;
     font-family: 'Lexend Deca';
     padding-top: 10px;
     padding-bottom: 10px;
-    margin-bottom: 10px;
+    margin-bottom: 20px;
 
     p {
         font-size: 20px;
@@ -204,11 +216,16 @@ const ContainerExperiences = styled.div`
     div:first-child {
         display: flex;
         flex-direction: column;
+        margin-left: 20px;
+    }
+
+    div:last-child {
+        margin-right: 25px;
     }
 
     svg {
         font-size: 30px;
         cursor: pointer;
-        margin-right: 10px;
+        margin-right: 5px;
     }
 `;
