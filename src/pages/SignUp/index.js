@@ -20,7 +20,7 @@ function SignUp() {
         password: signUp.password
     }
 
-    const URL = 'https://projectmyexperiences.herokuapp.com/signup';
+    const URL = 'http://projectmyexperiences.herokuapp.com/signup';
 
     function handleSignUp(e) {
         e.preventDefault();
