@@ -70,7 +70,7 @@ function MappingExperience(props) {
 
     function handleDelete(callback) {
         if (window.confirm("Do you want to delete this experience?")) {
-            const URL = `https://localhost:5000/experiences/${callback.done ? "planned/" : ""}delete/${callback.id}`;
+            const URL = `https://projectmyexperiences.herokuapp.com/experiences/${callback.done ? "planned/" : ""}delete/${callback.id}`;
             const config = { headers: { Authorization: `Bearer ${userToken}` } };
             axios.delete(URL, config);
             setAtt(!att);

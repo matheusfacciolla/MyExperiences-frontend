@@ -85,7 +85,7 @@ function MappingPlannedExperience(props) {
             return;
         }
         const obj = { id: PlannedExperience.id, done: !PlannedExperience.done }
-        const URL = `https://localhost:5000/experiences/planned`;
+        const URL = `https://projectmyexperiences.herokuapp.com/experiences/planned`;
         const config = { headers: { Authorization: `Bearer ${userToken}` } };
         const promise = axios.put(URL, obj, config);
 
@@ -101,7 +101,7 @@ function MappingPlannedExperience(props) {
 
     function handleDelete(callback) {
         if (window.confirm("Do you want to delete this planned experience?")) {
-            const URL = `https://localhost:5000/experiences/planned/delete/${callback.id}`;
+            const URL = `https://projectmyexperiences.herokuapp.com/experiences/planned/delete/${callback.id}`;
             const config = { headers: { Authorization: `Bearer ${userToken}` } };
             axios.delete(URL, config);
             setAtt(!att);
