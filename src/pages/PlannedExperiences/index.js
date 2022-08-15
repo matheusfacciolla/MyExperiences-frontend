@@ -70,13 +70,12 @@ function MappingPlannedExperience(props) {
     const { data, userToken, setAtt, att, setIsLoading } = props;
     const [isOpen, setIsOpen] = useState(false);
 
-
     const isCheckTrue = "#008000";
     const isCheckFalse = "#ff0000";
 
     function handleCheck(PlannedExperience) {
+        const date1 = moment(dayjs(Date.now()));
         const date2 = moment(PlannedExperience.date);
-        const date1 = moment(dayjs(Date.now()).format("DD-MM-YYYY"))
         const diff = date1.diff(date2, 'day');
 
         if(diff < 0){
