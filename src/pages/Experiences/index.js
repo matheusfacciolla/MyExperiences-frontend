@@ -21,7 +21,7 @@ function Experiences() {
             Authorization: `Bearer ${userToken}`
         }
     }
-    const URL = 'http://projectmyexperiences.herokuapp.com/experiences';
+    const URL = 'https://projectmyexperiences.herokuapp.com/experiences';
 
     useEffect(() => {
         const promise = axios.get(URL, config);

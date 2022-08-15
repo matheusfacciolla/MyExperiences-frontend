@@ -34,7 +34,7 @@ function NewRegister() {
         category_id: parseInt(create.category_id)
     }
 
-    const URL = `http://projectmyexperiences.herokuapp.com/experiences${create.type === "experience" ? "" : "/planned"}/create`;
+    const URL = `https://projectmyexperiences.herokuapp.com/experiences${create.type === "experience" ? "" : "/planned"}/create`;
 
     function handleCreate(e) {
         e.preventDefault();
