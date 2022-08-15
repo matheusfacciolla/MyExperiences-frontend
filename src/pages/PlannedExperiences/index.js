@@ -1,7 +1,6 @@
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 import dayjs from "dayjs";
-import moment from 'moment';
 
 import styled from 'styled-components';
 import { IoIosArrowDown } from "react-icons/io";
@@ -74,11 +73,20 @@ function MappingPlannedExperience(props) {
     const isCheckFalse = "#ff0000";
 
     function handleCheck(PlannedExperience) {
-        const date1 = moment(dayjs(Date.now()));
-        const date2 = moment(PlannedExperience.date);
-        const diff = date1.diff(date2, 'day');
+        const date1 = new Date(dayjs(Date.now()));
 
-        if(diff < 0){
+        let data = PlannedExperience.date;
+        const dataSplit = data.split('/');
+        const day = dataSplit[0];
+        const month = dataSplit[1];
+        const year = dataSplit[2];
+        data = new Date(year, month - 1, day);
+        const date2 = new Date(data);
+
+        const res = date1.getTime() - date2.getTime();
+        const diff = res / (1000 * 60 * 60 * 24);
+
+        if (diff < 0) {
             alert("The day of this experience has not arrived yet...");
             setIsLoading(false);
             return;
