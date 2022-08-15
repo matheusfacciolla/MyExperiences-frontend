@@ -44,7 +44,6 @@ function NewRegister() {
         const diff = date1.diff(date2, 'day');
 
         if (diff < 0 && create.type === 'experience') {
-            console.log(diff)
             alert("The day of this experience has not arrived yet...");
             setIsLoading(false);
             return;
@@ -88,7 +87,7 @@ function NewRegister() {
                 </select>
                 <input
                     type='text'
-                    placeholder='title (max 20 caracteres)'
+                    placeholder='title (max 30 caracteres)'
                     name='title'
                     value={create.title}
                     onChange={e => setCreate({ ...create, title: e.target.value })}
@@ -115,7 +114,7 @@ function NewRegister() {
                 />
                 <input
                     type='text'
-                    placeholder='description (max 30 caracteres)'
+                    placeholder='description (max 40 caracteres)'
                     name='description'
                     value={create.description}
                     onChange={e => setCreate({ ...create, description: e.target.value })}
@@ -162,10 +161,15 @@ const ContainerContent = styled.div`
     display: flex;
     flex-direction: column;
     background-color: #7e72c7;
-    width: 500px;
-    height: 100vh;
     justify-content: center;
     align-items: center;
+    width: 500px;
+    margin-top: 80px;
+    margin-bottom: 77px;
+    padding-top: 20px;
+    padding-bottom: 20px;
+    border-radius: 10px;
+    box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
 
     @media(max-width: 500px) {
         width: 300px;

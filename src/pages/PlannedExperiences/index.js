@@ -85,7 +85,7 @@ function MappingPlannedExperience(props) {
             return;
         }
         const obj = { id: PlannedExperience.id, done: !PlannedExperience.done }
-        const URL = `http://localhost:5000/experiences/planned`;
+        const URL = `https://localhost:5000/experiences/planned`;
         const config = { headers: { Authorization: `Bearer ${userToken}` } };
         const promise = axios.put(URL, obj, config);
 
@@ -101,7 +101,7 @@ function MappingPlannedExperience(props) {
 
     function handleDelete(callback) {
         if (window.confirm("Do you want to delete this planned experience?")) {
-            const URL = `http://localhost:5000/experiences/planned/delete/${callback.id}`;
+            const URL = `https://localhost:5000/experiences/planned/delete/${callback.id}`;
             const config = { headers: { Authorization: `Bearer ${userToken}` } };
             axios.delete(URL, config);
             setAtt(!att);
@@ -148,7 +148,10 @@ const ContainerContent = styled.div`
     flex-direction: column;
     background-color: #7e72c7;
     width: 500px;
-    height: 100vh;
+    margin-top: 90px;
+    margin-bottom: 90px;
+    padding-top: 20px;
+    padding-bottom: 20px;
     justify-content: center;
     align-items: center;
     border-radius: 10px;
