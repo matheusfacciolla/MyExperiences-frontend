@@ -43,6 +43,7 @@ const Foot = styled.div`
 
 const PlannedExperiences = styled.div`
     button {
+        width: 100%;
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
@@ -52,11 +53,18 @@ const PlannedExperiences = styled.div`
         background: #5745c6;
         border: none;
         cursor: pointer;
+
+        @media(max-width: 500px) {
+            font-size: 20px;
+            line-height: 20px;
+        }
     }
+
 `;
 
 const Experiences = styled.div`
     button {
+        width: 100%;
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
@@ -66,11 +74,17 @@ const Experiences = styled.div`
         background: #5745c6;
         border: none;
         cursor: pointer;
+        
+        @media(max-width: 500px) {
+            font-size: 20px;
+            line-height: 20px;
+        }
     }
 `;
 
 const NewRegister = styled.div`
     button {
+        width: 100%;
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
@@ -80,10 +94,20 @@ const NewRegister = styled.div`
         background: #5745c6;
         border: none;
         cursor: pointer;
+
+        @media(max-width: 500px) {
+            font-size: 20px;
+            line-height: 20px;
+        }
     }
 `;
 
 const SeparadorVertical = styled.div`
     height: 40px;
     border-right: 3px solid #ffffff;
+
+    @media(max-width: 500px) {
+        height: 30px;
+        border-right: 1px solid #ffffff;
+    }
 `;

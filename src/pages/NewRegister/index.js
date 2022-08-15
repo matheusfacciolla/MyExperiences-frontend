@@ -25,11 +25,11 @@ function NewRegister() {
             Authorization: `Bearer ${userToken}`
         }
     }
-    
+
     const obj = {
         title: create.title,
         place: create.place,
-        date: moment((new Date(create.date)).toLocaleDateString()).add(1, 'month').calendar(),
+        date: moment(create.date).format("DD/MM/YYYY"),
         description: create.description,
         category_id: parseInt(create.category_id)
     }
@@ -39,8 +39,8 @@ function NewRegister() {
     function handleCreate(e) {
         e.preventDefault();
         setIsLoading(true)
-        const date1 = moment(dayjs(Date.now()).format("DD-MM-YYYY"))
-        const date2 = moment(obj.date);
+        const date1 = moment(dayjs(Date.now()));
+        const date2 = moment(create.date);
         const diff = date1.diff(date2, 'day');
 
         if (diff < 0 && create.type === 'experience') {
@@ -166,23 +166,32 @@ const ContainerContent = styled.div`
     height: 100vh;
     justify-content: center;
     align-items: center;
+
+    @media(max-width: 500px) {
+        width: 300px;
+    }
 `;
 
 const H1 = styled.h1`
     text-align: center;
-    margin-bottom: 50px;
+    margin-bottom: 20px;
     font-family: 'Lexend Deca';
     font-style: normal;
     font-weight: 400;
-    font-size: 30px;
+    font-size: 28px;
     line-height: 29px;
     color: white;
+
+    @media(max-width: 500px) {
+        font-size: 24px;
+        line-height: 24px;
+    }
 `;
 
 const ContainerInputs = styled.div`
     input {
         width: 380px;
-        height: 50px;
+        height: 35px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
@@ -198,10 +207,16 @@ const ContainerInputs = styled.div`
         padding-right: 20px;
         box-shadow: 0 0 0 0;
         outline: 0;
+
+        @media(max-width: 500px) {
+            width: 250px;
+            font-weight: 400;
+            font-size: 14px;
+        }
     }
     select {
         width: 380px;
-        height: 50px;
+        height: 35px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
         border-radius: 5px;
@@ -214,13 +229,20 @@ const ContainerInputs = styled.div`
         font-size: 19.976px;
         line-height: 25px;
         color: #DBDBDB;
-        padding-top: 13px;
+        padding-top: 5px;
         padding-left: 14px;
         box-shadow: 0 0 0 0;
         outline: 0;
+
+        @media(max-width: 500px) {
+            width: 250px;
+            font-weight: 400;
+            font-size: 14px;
+        }
     }
+    
     select:first-child{
-        margin-bottom: 50px;
+        margin-bottom: 30px;
     }
 
     input::placeholder {
@@ -230,6 +252,11 @@ const ContainerInputs = styled.div`
         font-size: 19.976px;
         line-height: 25px;
         color: #DBDBDB;
+
+        @media(max-width: 500px) {
+            font-weight: 400;
+            font-size: 14px;
+        }
     }
     button {
         width: 380px;
@@ -244,8 +271,11 @@ const ContainerInputs = styled.div`
         text-align: center;
         border: none;
         color: #FFFFFF;
-        margin-bottom: 25px;
         cursor: pointer;
+
+        @media(max-width: 500px) {
+            width: 250px;
+        }
     }
     p {
         font-family: 'Lexend Deca';

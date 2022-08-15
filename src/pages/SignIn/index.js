@@ -89,7 +89,7 @@ function SignIn() {
 export default SignIn;
 
 const ContainerContent = styled.div`
-    width: 100vw;
+    width: 100%;
     height: 100vh;
     display: flex;
     flex-direction: column;
@@ -110,12 +110,9 @@ const ContainerContent = styled.div`
     }
 `;
 const ContainerLogo = styled.div`
-    img {
-        width: 180px;
-        height: 178.38px;
-        margin-top: 68px;
-    }
+    width: 100%;
     h1 {
+        width: 100%;
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
@@ -124,12 +121,18 @@ const ContainerLogo = styled.div`
         text-align: center;
         color: white;
         margin-bottom: 18px;
+
+        @media(max-width: 500px) {
+            font-size: 40px;
+            line-height: 40px;
+        }
     }
 `;
 
 const ContainerInputs = styled.div`
+    width: 100%;
     input {
-        width: 303px;
+        width: 100%;
         height: 45px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
@@ -156,7 +159,7 @@ const ContainerInputs = styled.div`
         color: #DBDBDB;
     }
     button {
-        width: 303px;
+        width: 100%;
         height: 45px;
         background: #5745c6;
         border-radius: 4.63636px;

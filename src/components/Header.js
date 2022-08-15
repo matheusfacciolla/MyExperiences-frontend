@@ -64,6 +64,10 @@ const Head = styled.div`
         font-weight: 400;
         font-size: 20px;
         margin-right: 20px;
+
+        @media(max-width: 500px) {
+            display: none;
+        }
     }
 
     button {

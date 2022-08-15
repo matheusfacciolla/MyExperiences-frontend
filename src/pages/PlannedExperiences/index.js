@@ -112,7 +112,10 @@ function MappingPlannedExperience(props) {
     return (
         <ContainerWrap>
             <ContainerCategories>
-                <h1>{data.category}</h1>
+                <div>
+                    <h1>{data.category}</h1>
+                    <p>{`(${data.planned_experiences === 0 ? 0 : data.planned_experiences.length})`}</p>
+                </div>
                 <IoIosArrowDown onClick={() => setIsOpen(!isOpen)} />
             </ContainerCategories>
             {
@@ -145,15 +148,16 @@ const ContainerContent = styled.div`
     flex-direction: column;
     background-color: #7e72c7;
     width: 500px;
-    height: 100%;
+    height: 100vh;
     justify-content: center;
     align-items: center;
-    margin-top: 90px;
-    margin-bottom: 90px;
-    padding-top: 30px;
-    padding-bottom: 30px;
     border-radius: 10px;
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
+
+    @media(max-width: 500px) {
+        text-align: center;
+        width: 300px;
+    }
 `;
 
 const H1 = styled.h1`
@@ -177,6 +181,10 @@ const ContainerWrap = styled.div`
     color: white;
     position: relative;
     border-radius: 5px;
+
+    @media(max-width: 500px) {
+        width: 80%;
+    }
 `;
 
 const ContainerCategories = styled.div`
@@ -185,10 +193,18 @@ const ContainerCategories = styled.div`
     margin-top: 10px;
     margin-bottom: 10px;
 
-    h1 {
-        margin: 3px;
-        font-size: 26px;
-        margin-left: 20px;
+    div {
+        display: flex;
+        align-items: center;
+        h1 {
+            margin: 3px;
+            font-size: 26px;
+            margin-left: 20px;
+        }
+        p {
+            margin-left: 12px;
+            font-size: 20px;
+        }
     }
 
     svg {

@@ -96,11 +96,11 @@ function SignUp() {
 export default SignUp;
 
 const ContainerContent = styled.div`
+    width: 100%;
     display: flex;
     flex-direction: column;
     align-items: center;
     justify-content: center;
-    width: 100vw;
     height: 100vh;
     background: #8b82c3;
 
@@ -118,7 +118,9 @@ const ContainerContent = styled.div`
 `;
 
 const ContainerLogo = styled.div`
+    width: 100%;
     button {
+        width: 100%;
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
@@ -130,12 +132,19 @@ const ContainerLogo = styled.div`
         background: #8b82c3;
         border: none;
         cursor: pointer;
+
+        
+        @media(max-width: 500px) {
+            font-size: 40px;
+            line-height: 40px;
+        }
     }
 `;
 
 const ContainerInputs = styled.div`
+    width: 100%;
     input {
-        width: 303px;
+        width: 100%;
         height: 45px;
         background: #FFFFFF;
         border: 1px solid #D5D5D5;
@@ -162,7 +171,7 @@ const ContainerInputs = styled.div`
         color: #DBDBDB;
     }
     button {
-        width: 303px;
+        width: 100%;
         height: 45px;
         background: #5745c6;
         border-radius: 4.63636px;
