@@ -30,7 +30,8 @@ export default Navigation;
 const Foot = styled.div`
     width: 100%;
     height: 70px;
-    background: #5745c6;
+    background-color: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.text};
     box-shadow: 0px 4px 4px rgba(0, 0, 0, 0.15);
     display: flex;
     align-items: center;
@@ -49,8 +50,8 @@ const PlannedExperiences = styled.div`
         font-weight: 400;
         font-size: 30px;
         line-height: 29px;
-        color: white;
-        background: #5745c6;
+        background-color: ${({ theme }) => theme.body};
+        color: ${({ theme }) => theme.text};
         border: none;
         cursor: pointer;
 
@@ -70,8 +71,8 @@ const Experiences = styled.div`
         font-weight: 400;
         font-size: 30px;
         line-height: 29px;
-        color: white;
-        background: #5745c6;
+        background-color: ${({ theme }) => theme.body};
+        color: ${({ theme }) => theme.text};
         border: none;
         cursor: pointer;
         
@@ -90,8 +91,8 @@ const NewRegister = styled.div`
         font-weight: 400;
         font-size: 30px;
         line-height: 29px;
-        color: white;
-        background: #5745c6;
+        background-color: ${({ theme }) => theme.body};
+        color: ${({ theme }) => theme.text};
         border: none;
         cursor: pointer;
 

@@ -4,6 +4,9 @@ import { useState, useEffect } from 'react';
 import UserContext from './contexts/UserContext.js';
 import GlobalStyle from './assets/globalStyle.js';
 
+import { ThemeProvider } from "styled-components";
+import { lightTheme, darkTheme } from "./assets/themes";
+
 import SignIn from './pages/SignIn/index.js';
 import SignUp from './pages/SignUp/index.js';
 import Experiences from './pages/Experiences/index.js';
@@ -16,6 +19,7 @@ function App() {
     const [userToken, setUserToken] = useState(tokenStorage);
     const [userName, setUserName] = useState(nameStorage);
     const [att, setAtt] = useState(false);
+    const [theme, setTheme] = useState("light");
 
     useEffect(() => {
         if (tokenStorage) {
@@ -24,13 +28,18 @@ function App() {
         if (nameStorage) {
             setUserName(nameStorage);
         }
-    // eslint-disable-next-line
+        // eslint-disable-next-line
     }, []);
 
-    const contextValue = { userToken, setUserToken, userName, setUserName, att, setAtt };
+    useEffect(() => {
+        const localTheme = localStorage.getItem("theme");
+        localTheme && setTheme(localTheme);
+    }, []);
+
+    const contextValue = { userToken, setUserToken, userName, setUserName, att, setAtt, theme, setTheme };
 
     return (
-        <>
+        <ThemeProvider theme={theme === "light" ? lightTheme : darkTheme}>
             <GlobalStyle />
             <UserContext.Provider value={contextValue}>
                 <BrowserRouter>
@@ -43,7 +52,7 @@ function App() {
                     </Routes>
                 </BrowserRouter>
             </UserContext.Provider>
-        </>
+        </ThemeProvider>
     );
 }
 

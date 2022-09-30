@@ -160,7 +160,7 @@ export default NewRegister;
 const ContainerContent = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: #7e72c7;
+    background-color: ${({ theme }) => theme.global};
     justify-content: center;
     align-items: center;
     width: 500px;
@@ -265,7 +265,7 @@ const ContainerInputs = styled.div`
     button {
         width: 380px;
         height: 45px;
-        background: #5745c6;
+        background-color: ${({ theme }) => theme.body};
         border-radius: 4.63636px;
         font-family: 'Lexend Deca';
         font-style: normal;

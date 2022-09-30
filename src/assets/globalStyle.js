@@ -132,7 +132,8 @@ table {
     box-sizing: border-box;
 }
 body {
-  background: #8b82c3;
+  //background: #8b82c3;
+  background-color: ${({ theme }) => theme.global};
   display: flex;
   justify-content: center;
   align-items: center;
