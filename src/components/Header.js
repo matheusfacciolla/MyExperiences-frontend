@@ -5,6 +5,7 @@ import UserContext from "../contexts/UserContext";
 
 import styled from 'styled-components';
 import { MdExitToApp } from "react-icons/md";
+import Switch from '@mui/material/Switch';
 
 function Header() {
     const { setUserToken, setUserName, userName, theme, setTheme } = useContext(UserContext);
@@ -26,13 +27,15 @@ function Header() {
 
     const toggleTheme = () => {
         if (theme === "light") {
-          localStorage.setItem("theme", "dark");
-          setTheme("dark");
+            localStorage.setItem("theme", "dark");
+            setTheme("dark");
         } else {
-          localStorage.setItem("theme", "light");
-          setTheme("light");
+            localStorage.setItem("theme", "light");
+            setTheme("light");
         }
-      };
+    };
+
+    const label = { inputProps: { 'aria-label': 'Switch demo' } };
 
     return (
         <Head>
@@ -41,11 +44,11 @@ function Header() {
             </Link>
             <div>
                 <p>{`Welcome, ${userName}!`}</p>
-                {exit ? <MdExitToApp onClick={() => { setExit(false) }} /> : <MdExitToApp onClick={() => { logOut(); setExit(true) }} />}
             </div>
             <ContainerTheme>
-                <Title>{theme} mode</Title>
-                <SwitchButton onClick={() => toggleTheme()}>Trocar tema</SwitchButton>
+                <p>{theme} mode</p>
+                <Switch onClick={() => toggleTheme()} {...label} />
+                {exit ? <MdExitToApp onClick={() => { setExit(false) }} /> : <MdExitToApp onClick={() => { logOut(); setExit(true) }} />}
             </ContainerTheme>
         </Head>
     );
@@ -76,8 +79,7 @@ const Head = styled.div`
         font-style: normal;
         color: ${({ theme }) => theme.text};
         font-weight: 400;
-        font-size: 20px;
-        margin-right: 20px;
+        font-size: 26px;
 
         @media(max-width: 500px) {
             display: none;
@@ -88,39 +90,38 @@ const Head = styled.div`
         font-family: 'Lexend Deca';
         font-style: normal;
         font-weight: 400;
-        font-size: 30px;
+        width: 100%;
+        font-size: 24px;
         line-height: 29px;
         background-color: ${({ theme }) => theme.body};
         color: ${({ theme }) => theme.text};
         border: none;
         cursor: pointer;
     }
+`;
+
+const ContainerTheme = styled.div`
+    p {
+        font-family: 'Lexend Deca';
+        width: 100%;
+        font-size: 20px;
+        color: ${({ theme }) => theme.text};
+    }
+
+    button {
+        width: 100%;
+        height: 100%;
+        cursor: pointer;
+        background-color: ${({ theme }) => theme.body};
+        margin-left: 10px;
+    }
 
     svg {
         font-style: normal;
         font-weight: 400;
-        font-size: 30px;
+        font-size: 44px;
         line-height: 29px;
         color: ${({ theme }) => theme.text};
-        margin-right: 20px;
         cursor: pointer;
     }
-`;
-
-const ContainerTheme = styled.div`
-
-`;
-
-const Title = styled.h1`
-  font-size: 24px;
-  font-weight: bold;
-  color: ${({ theme }) => theme.text};
-`;
-
-const SwitchButton = styled.button`
-  width: 100%;
-  height: 100%;
-  cursor: pointer;
-  background-color: ${({ theme }) => theme.body};
-  margin-left: 10px;
 `;

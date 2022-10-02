@@ -229,7 +229,7 @@ const ContainerExperiences = styled.div`
     display: flex;
     justify-content: space-between;
     align-items: center;
-    background-color: #8b82c3;
+    background-color: ${({ theme }) => theme.global};
     font-family: 'Lexend Deca';
     padding-top: 10px;
     padding-bottom: 10px;

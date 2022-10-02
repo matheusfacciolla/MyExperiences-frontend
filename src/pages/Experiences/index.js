@@ -209,7 +209,7 @@ const ContainerExperiences = styled.div`
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    background-color: #8b82c3;
+    background-color: ${({ theme }) => theme.global};
     font-family: 'Lexend Deca';
 
     div {
