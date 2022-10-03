@@ -47,7 +47,7 @@ function Header() {
             </div>
             <ContainerTheme>
                 <p>{theme} mode</p>
-                <Switch onClick={() => toggleTheme()} {...label} />
+                <Switch checked={theme === "dark"? true : false} onClick={() => toggleTheme()} {...label} />
                 {exit ? <MdExitToApp onClick={() => { setExit(false) }} /> : <MdExitToApp onClick={() => { logOut(); setExit(true) }} />}
             </ContainerTheme>
         </Head>
