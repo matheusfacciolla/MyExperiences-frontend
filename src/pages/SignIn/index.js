@@ -95,7 +95,7 @@ const ContainerContent = styled.div`
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    background: #8b82c3;
+    background-color: ${({ theme }) => theme.global};
 
     p {
         font-family: 'Lexend Deca';
@@ -105,7 +105,7 @@ const ContainerContent = styled.div`
         line-height: 17px;
         text-align: center;
         text-decoration-line: underline;
-        color: white;
+        color: ${({ theme }) => theme.text};
         cursor: pointer;
     }
 `;
@@ -119,7 +119,7 @@ const ContainerLogo = styled.div`
         font-size: 68.982px;
         line-height: 86px;
         text-align: center;
-        color: white;
+        color: ${({ theme }) => theme.text};
         margin-bottom: 18px;
 
         @media(max-width: 500px) {
@@ -161,7 +161,7 @@ const ContainerInputs = styled.div`
     button {
         width: 100%;
         height: 45px;
-        background: #5745c6;
+        background-color: ${({ theme }) => theme.body};
         border-radius: 4.63636px;
         font-family: 'Lexend Deca';
         font-style: normal;
@@ -170,7 +170,7 @@ const ContainerInputs = styled.div`
         line-height: 26px;
         text-align: center;
         border: none;
-        color: #FFFFFF;
+        color: ${({ theme }) => theme.text};
         margin-bottom: 25px;
         cursor: pointer;
     }

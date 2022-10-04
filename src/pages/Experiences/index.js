@@ -130,7 +130,7 @@ function MappingExperience(props) {
 const ContainerContent = styled.div`
     display: flex;
     flex-direction: column;
-    background-color: #7e72c7;
+    background-color: ${({ theme }) => theme.global};
     width: 500px;
     margin-top: 90px;
     margin-bottom: 90px;
@@ -153,7 +153,7 @@ const H1 = styled.h1`
     font-weight: 400;
     font-size: 36px;
     line-height: 29px;
-    color: white;
+    color: ${({ theme }) => theme.text};
 `;
 
 const ContainerWrap = styled.div`
@@ -162,9 +162,9 @@ const ContainerWrap = styled.div`
     justify-content: space-around;
     margin-bottom: 10px;
     width: 400px;
-    background-color: #5745c6;
+    background-color: ${({ theme }) => theme.body};
+    color: ${({ theme }) => theme.text};
     font-family: 'Lexend Deca';
-    color: white;
     border-radius: 5px;
 
     @media(max-width: 500px) {
@@ -209,7 +209,7 @@ const ContainerExperiences = styled.div`
     padding-top: 10px;
     padding-bottom: 10px;
     margin-bottom: 10px;
-    background-color: #8b82c3;
+    background-color: ${({ theme }) => theme.global};
     font-family: 'Lexend Deca';
 
     div {
