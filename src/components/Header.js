@@ -1,14 +1,16 @@
 import { useContext, useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 
-import UserContext from "../contexts/UserContext";
+import { UserContext } from "../contexts/UserContext";
+import { ThemeContext } from '../contexts/ThemeContext';
 
 import styled from 'styled-components';
 import { MdExitToApp } from "react-icons/md";
 import Switch from '@mui/material/Switch';
 
 function Header() {
-    const { setUserToken, setUserName, userName, theme, setTheme } = useContext(UserContext);
+    const { setUserToken, setUserName, userName } = useContext(UserContext);
+    const { theme, setTheme } = useContext(ThemeContext);
     const [exit, setExit] = useState(true);
 
     const navigate = useNavigate();
@@ -47,7 +49,7 @@ function Header() {
             </div>
             <ContainerTheme>
                 <p>{theme} mode</p>
-                <Switch checked={theme === "dark"? true : false} onClick={() => toggleTheme()} {...label} />
+                <Switch checked={theme === "dark" ? true : false} onClick={() => toggleTheme()} {...label} />
                 {exit ? <MdExitToApp onClick={() => { setExit(false) }} /> : <MdExitToApp onClick={() => { logOut(); setExit(true) }} />}
             </ContainerTheme>
         </Head>

@@ -1,13 +1,14 @@
 import { Link, useNavigate } from 'react-router-dom';
-import { useState } from 'react';
+import { useState, useContext } from 'react';
 
 import axios from 'axios';
 import styled from 'styled-components';
 
 import Loading from '../../components/Loading';
-
+import { UserContext } from '../../contexts/UserContext';
 
 function SignUp() {
+    const { DEFAULTURL } = useContext(UserContext);
     const [signUp, setSignUp] = useState({});
     const [isLoading, setIsLoading] = useState(false);
 
@@ -20,7 +21,7 @@ function SignUp() {
         password: signUp.password
     }
 
-    const URL = 'https://projectmyexperiences.herokuapp.com/signup';
+    const URL = `${DEFAULTURL}/signup`;
 
     function handleSignUp(e) {
         e.preventDefault();

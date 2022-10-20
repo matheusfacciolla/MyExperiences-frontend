@@ -4,12 +4,12 @@ import { useState, useContext } from 'react';
 import axios from 'axios';
 import styled from 'styled-components';
 
-import UserContext from '../../contexts/UserContext';
+import { UserContext } from '../../contexts/UserContext';
 import Loading from '../../components/Loading.js';
 
 
 function SignIn() {
-    const { setUserToken, setUserName } = useContext(UserContext);
+    const { DEFAULTURL, setUserToken, setUserName } = useContext(UserContext);
     const [signIn, setSignIn] = useState({ email: '', password: '' });
     const [isLoading, setIsLoading] = useState(false);
 
@@ -21,7 +21,7 @@ function SignIn() {
         password: signIn.password
     }
 
-    const URL = 'https://projectmyexperiences.herokuapp.com/';
+    const URL = `${DEFAULTURL}/`;
 
     function handleSigIn(e) {
         e.preventDefault();

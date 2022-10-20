@@ -1,7 +1,7 @@
 import { useContext, useEffect, useState } from 'react';
 import axios from 'axios';
 
-import UserContext from '../../contexts/UserContext';
+import { UserContext } from '../../contexts/UserContext';
 import Loading from '../../components/Loading';
 
 import styled from 'styled-components';
@@ -12,7 +12,7 @@ import Header from '../../components/Header';
 import Navigation from '../../components/Navigation';
 
 function Experiences() {
-    const { userToken, att, setAtt } = useContext(UserContext);
+    const { DEFAULTURL, userToken, att, setAtt } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState([]);
 
@@ -21,7 +21,7 @@ function Experiences() {
             Authorization: `Bearer ${userToken}`
         }
     }
-    const URL = 'https://projectmyexperiences.herokuapp.com/experiences';
+    const URL = `${DEFAULTURL}/experiences`;
 
     useEffect(() => {
         const promise = axios.get(URL, config);
@@ -33,7 +33,7 @@ function Experiences() {
             alert("Deu algum erro...");
             setIsLoading(false);
         });
-    // eslint-disable-next-line
+        // eslint-disable-next-line
     }, [!att]);
 
     return (
@@ -65,16 +65,23 @@ function Experiences() {
 export default Experiences;
 
 function MappingExperience(props) {
+    const { DEFAULTURL } = useContext(UserContext);
     const { data, setIsLoading, setAtt, att, userToken } = props;
     const [isOpen, setIsOpen] = useState(false);
 
     function handleDelete(callback) {
         if (window.confirm("Do you want to delete this experience?")) {
-            const URL = `https://projectmyexperiences.herokuapp.com/experiences/${callback.done ? "planned/" : ""}delete/${callback.id}`;
+            const URL = `${DEFAULTURL}/experiences/${callback.done ? "planned/" : ""}delete/${callback.id}`;
             const config = { headers: { Authorization: `Bearer ${userToken}` } };
-            axios.delete(URL, config);
-            setAtt(!att);
-            setIsLoading(false);
+            const promise = axios.delete(URL, config);
+            promise.then((response) => {
+                setAtt(!att);
+                setIsLoading(false);
+            });
+            promise.catch(error => {
+                alert("Deu algum erro...");
+                setIsLoading(false);
+            });
         }
     }
 
@@ -89,9 +96,9 @@ function MappingExperience(props) {
             </ContainerCategories>
             {
                 isOpen ?
-                    data.experiences.map(experience => {
+                    data.experiences.map((experience, index) => {
                         return (
-                            <ContainerExperiences>
+                            <ContainerExperiences key={index}>
                                 <div>
                                     <p>{experience.title}</p>
                                     <p>{experience.place}</p>
@@ -107,9 +114,9 @@ function MappingExperience(props) {
             }
             {
                 isOpen && data.planned_experiences.length > 0 ?
-                    data.planned_experiences.map(planned_experience => {
+                    data.planned_experiences.map((planned_experience, index)=> {
                         return (
-                            <ContainerExperiences>
+                            <ContainerExperiences key={index}>
                                 <div>
                                     <p>{planned_experience.title}</p>
                                     <p>{planned_experience.place}</p>

@@ -4,7 +4,7 @@ import axios from 'axios';
 import dayjs from "dayjs";
 import moment from 'moment';
 
-import UserContext from '../../contexts/UserContext';
+import { UserContext } from '../../contexts/UserContext';
 
 import styled from 'styled-components';
 
@@ -13,8 +13,8 @@ import Navigation from '../../components/Navigation';
 import Loading from '../../components/Loading';
 
 function NewRegister() {
-    const { userToken } = useContext(UserContext);
-    const [create, setCreate] = useState({});
+    const { DEFAULTURL, userToken } = useContext(UserContext);
+    const [create, setCreate] = useState({ title: "", date: "", place: "", description: "", category_id: "" });
     const [isLoading, setIsLoading] = useState(false);
 
     const inputCreate = handleInputCreate();
@@ -34,7 +34,7 @@ function NewRegister() {
         category_id: parseInt(create.category_id)
     }
 
-    const URL = `https://projectmyexperiences.herokuapp.com/experiences${create.type === "experience" ? "" : "/planned"}/create`;
+    const URL = `${DEFAULTURL}/experiences${create.type === "experience" ? "" : "/planned"}/create`;
 
     function handleCreate(e) {
         e.preventDefault();
@@ -78,7 +78,7 @@ function NewRegister() {
                     name='create'
                     value={create.category}
                     onChange={e => setCreate({ ...create, type: e.target.value })}
-                    disabled={isLoading? true : false}
+                    disabled={isLoading ? true : false}
                     required
                 >
                     <option value="">select</option>
@@ -91,7 +91,7 @@ function NewRegister() {
                     name='title'
                     value={create.title}
                     onChange={e => setCreate({ ...create, title: e.target.value })}
-                    disabled={isLoading? true : false}
+                    disabled={isLoading ? true : false}
                     required
                 />
                 <input
@@ -100,7 +100,7 @@ function NewRegister() {
                     name='place'
                     value={create.place}
                     onChange={e => setCreate({ ...create, place: e.target.value })}
-                    disabled={isLoading? true : false}
+                    disabled={isLoading ? true : false}
                     required
                 />
                 <input
@@ -109,7 +109,7 @@ function NewRegister() {
                     name='date'
                     value={create.date}
                     onChange={e => setCreate({ ...create, date: e.target.value })}
-                    disabled={isLoading? true : false}
+                    disabled={isLoading ? true : false}
                     required
                 />
                 <input
@@ -118,7 +118,7 @@ function NewRegister() {
                     name='description'
                     value={create.description}
                     onChange={e => setCreate({ ...create, description: e.target.value })}
-                    disabled={isLoading? true : false}
+                    disabled={isLoading ? true : false}
                     required
                 />
                 <select
@@ -127,7 +127,7 @@ function NewRegister() {
                     name='category'
                     value={create.category}
                     onChange={e => setCreate({ ...create, category_id: e.target.value })}
-                    disabled={isLoading? true : false}
+                    disabled={isLoading ? true : false}
                     required
                 >
                     <option value="">select</option>
@@ -137,7 +137,7 @@ function NewRegister() {
                     <option value="4">Others</option>
                 </select>
                 <div>
-                {isLoading ? <button disabled style={{ opacity: 0.7 }}><Loading /></button> : <button type='submit'>Register</button>}
+                    {isLoading ? <button type='submit' disabled style={{ opacity: 0.7 }}><Loading /></button> : <button type='submit'>Register</button>}
                 </div>
             </form>
         );

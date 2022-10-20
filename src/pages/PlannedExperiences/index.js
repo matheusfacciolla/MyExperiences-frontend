@@ -7,13 +7,13 @@ import { IoIosArrowDown } from "react-icons/io";
 import { BsCheckCircleFill } from "react-icons/bs";
 import { AiFillDelete } from "react-icons/ai";
 
-import UserContext from '../../contexts/UserContext';
+import { UserContext } from '../../contexts/UserContext';
 import Loading from '../../components/Loading';
 import Header from '../../components/Header';
 import Navigation from '../../components/Navigation';
 
 function PlannedExperiences() {
-    const { userToken, att, setAtt } = useContext(UserContext);
+    const { DEFAULTURL, userToken, att, setAtt } = useContext(UserContext);
     const [isLoading, setIsLoading] = useState(true);
     const [data, setData] = useState([]);
 
@@ -22,7 +22,7 @@ function PlannedExperiences() {
             Authorization: `Bearer ${userToken}`
         }
     }
-    const URL = 'https://projectmyexperiences.herokuapp.com/experiences/planned';
+    const URL = `${DEFAULTURL}/experiences/planned`;
 
     useEffect(() => {
         const promise = axios.get(URL, config);
@@ -66,6 +66,7 @@ function PlannedExperiences() {
 export default PlannedExperiences;
 
 function MappingPlannedExperience(props) {
+    const { DEFAULTURL } = useContext(UserContext);
     const { data, userToken, setAtt, att, setIsLoading } = props;
     const [isOpen, setIsOpen] = useState(false);
 
@@ -92,7 +93,7 @@ function MappingPlannedExperience(props) {
             return;
         }
         const obj = { id: PlannedExperience.id, done: !PlannedExperience.done }
-        const URL = `https://projectmyexperiences.herokuapp.com/experiences/planned`;
+        const URL = `${DEFAULTURL}/experiences/planned`;
         const config = { headers: { Authorization: `Bearer ${userToken}` } };
         const promise = axios.put(URL, obj, config);
 
@@ -108,7 +109,7 @@ function MappingPlannedExperience(props) {
 
     function handleDelete(callback) {
         if (window.confirm("Do you want to delete this planned experience?")) {
-            const URL = `https://projectmyexperiences.herokuapp.com/experiences/planned/delete/${callback.id}`;
+            const URL = `${DEFAULTURL}/experiences/planned/delete/${callback.id}`;
             const config = { headers: { Authorization: `Bearer ${userToken}` } };
             axios.delete(URL, config);
             setAtt(!att);
@@ -127,9 +128,9 @@ function MappingPlannedExperience(props) {
             </ContainerCategories>
             {
                 isOpen ?
-                    data.planned_experiences.map(experience => {
+                    data.planned_experiences.map((experience, index) => {
                         return (
-                            <ContainerExperiences>
+                            <ContainerExperiences key={index}>
                                 <div>
                                     <p>{experience.title}</p>
                                     <p>{experience.place}</p>
